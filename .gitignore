@@ -20,6 +20,7 @@ docs/_build/
 .vscode
 /python3-virtualenv
 python3-virtualenv/
+*.sqlite
 
 # Coverage reports
 htmlcov/
