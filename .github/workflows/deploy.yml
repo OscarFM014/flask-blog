@@ -6,7 +6,6 @@ on:
       - master
   workflow_dispatch:
 
-
 jobs:
   deploy:
     name: "Deploy to AWS EC2 Virtual Machine"

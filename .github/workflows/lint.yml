@@ -6,7 +6,8 @@ on:
   pull_request:
     branches:
       - main
-job:
+      
+jobs:
   run-linters:
     name: Run linters
     runs-on: ubuntu-latest
