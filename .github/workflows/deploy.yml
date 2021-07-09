@@ -39,7 +39,7 @@ jobs:
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
       - name: Deployment test
-        run: bash prod-test.sh
+        run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && pwd && bash prod-test.sh'  
 
       - name: Deployment Failure
         if: ${{ failure() }}
