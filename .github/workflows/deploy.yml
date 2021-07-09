@@ -33,7 +33,7 @@ jobs:
 
 
       - name: Print out Container Status
-        run: cd ${{ secrets.PROJECT_ROOT }} && docker-compose ps
+        run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && pwd && docker-compose ps ' 
 
       - name: Deployment Successful
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
