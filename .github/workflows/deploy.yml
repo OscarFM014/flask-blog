@@ -30,3 +30,18 @@ jobs:
         
       - name: Print projects root directory
         run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && pwd && git fetch && git reset --hard origin/master && sudo docker-compose up -d --build '
+
+
+      - name: Print out Container Status
+        run: docker-compose ps
+
+      - name: Deployment Successful
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+
+      - name: Deployment test
+        uses: actions/checkout@v2
+        run: bash prod-test.sh
+
+      - name: Deployment Failure
+        if: ${{ failure() }}
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
