@@ -35,12 +35,16 @@ jobs:
       - name: Print out Container Status
         run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && pwd && sudo docker-compose ps' 
 
-      - name: Deployment Successful
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
-
       - name: Deployment test
         run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && pwd && bash prod-test.sh'  
-
       - name: Deployment Failure
         if: ${{ failure() }}
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
+
+      - name: Deployment Successful
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+
+      
+
+     
+
